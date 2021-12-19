@@ -25,5 +25,11 @@ for category in category_columns :
     category_df = df[df['category'] == category]
     ax.bar(category, category_df['amt'].mean())
 
-ax.set_xticklabels(category_columns, rotation=90)
+ax.set_xticklabels(category_columns, rotation=45)
+ax.set_xlabel('Merchant Categories')
+ax.set_ylabel('Average TX Amount')
+
 plt.show()
+
+
+
