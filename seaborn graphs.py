@@ -41,6 +41,12 @@ sns.lmplot(data=total_data, x='dist', y='amt', col="is_fraud", row='gender', hue
 plt.ylim(0, 1000)
 plt.show()
 
+sns.set_style("dark")
+sns.set_context('poster')
+sns.lineplot(data=total_data, x='date', y='amt', hue='is_fraud')
+plt.ylim(0, 1000)
+plt.show()
+
 
 
 
