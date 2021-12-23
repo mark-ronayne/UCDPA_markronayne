@@ -32,7 +32,7 @@ def Distance(lat1, lon1, lat2, lon2):
     return dist
 
 
-total_data['dist'] = Distance(total_data['lat'].tolist(), total_data['long'].tolist(), total_data['merch_lat'].tolist(),
+total_data['dist_metres'] = Distance(total_data['lat'].tolist(), total_data['long'].tolist(), total_data['merch_lat'].tolist(),
                               total_data['merch_long'].tolist())
 
 print(total_data.head())
@@ -43,7 +43,7 @@ total_data['date'] = pd.to_datetime(total_data['trans_date_trans_time']).dt.date
 total_data['time'] = pd.to_datetime(total_data['trans_date_trans_time']).dt.time
 total_data['date'] = pd.to_datetime(total_data['date'])
 
-# total_data.info()
+total_data.info()
 print(total_data.head())
 
 

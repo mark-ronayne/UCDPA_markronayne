@@ -21,7 +21,7 @@ def Distance(lat1, lon1, lat2, lon2):
     return dist
 
 
-total_data['dist'] = Distance(total_data['lat'].tolist(), total_data['long'].tolist(), total_data['merch_lat'].tolist(),
+total_data['dist_metres'] = Distance(total_data['lat'].tolist(), total_data['long'].tolist(), total_data['merch_lat'].tolist(),
                               total_data['merch_long'].tolist())
 
 #splitting the trans_date_trans_time column into two, date and time respectively.
@@ -37,15 +37,27 @@ import matplotlib.pyplot as plt
 
 sns.set_style("dark")
 sns.set_context('poster')
-sns.lmplot(data=total_data, x='dist', y='amt', col="is_fraud", row='gender', hue='category')
+sns.lmplot(data=total_data, x='dist_metres', y='amt', col="is_fraud", row='gender', hue='category')
 plt.ylim(0, 1000)
 plt.show()
 
-sns.set_style("dark")
-sns.set_context('poster')
-sns.lineplot(data=total_data, x='date', y='amt', hue='is_fraud')
-plt.ylim(0, 1000)
-plt.show()
+#distribution of fraudulent TX amounts
+#sns.distplot(total_data.query('is_fraud == 1')['amt'], hist=False)
+#plt.title('Distribution of fraudulent transactions')
+#plt.show()
+
+#distribution of non-fraudulent TX amounts
+#sns.distplot(total_data.query('is_fraud == 0')['amt'], hist=False)
+#plt.xlim(-250, 1250)
+#plt.title('Distribution of non-fraudulent transactions')
+#plt.show()
+
+
+#sns.set_style("dark")
+#sns.set_context('poster')
+#sns.lineplot(data=total_data, x='date', y='amt', hue='is_fraud')
+#plt.ylim(0, 1000)
+#plt.show()
 
 
 
