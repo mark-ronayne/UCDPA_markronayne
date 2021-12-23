@@ -17,12 +17,16 @@ df1 = pd.read_csv(r"C:\Users\Mark Ronayne\Desktop\Personal\UCD\Semester 1\Projec
 total_data = pd.concat([df, df1], ignore_index=True)
 
 #print(total_data.head())
-#total_data.info()
+
 
 # splitting the trans_date_trans_time column into two, date and time respectively.
 
 total_data['date'] = pd.to_datetime(total_data['trans_date_trans_time']).dt.date
 total_data['time'] = pd.to_datetime(total_data['trans_date_trans_time']).dt.time
+total_data['date'] = pd.to_datetime(total_data['date'])
+
+total_data.info()
+print(total_data.head())
 
 #querying the df for the number of fraudulent transactions
 #print(total_data.query('is_fraud == 1'))
@@ -56,9 +60,9 @@ fig, ax = plt.subplots()
 
 #looping over the unique categories to find the % volume fraudulent transactions per category and presenting this in a bar plot - use log scale
 
-for category in category_columns :
-    category_df = df[df['category'] == category]
-    ax.bar(category, (category_df.query('is_fraud == 1')['amt'].sum() / category_df['amt'].sum()) * 100)
+#for category in category_columns :
+    #category_df = df[df['category'] == category]
+    #ax.bar(category, (category_df.query('is_fraud == 1')['amt'].sum() / category_df['amt'].sum()) * 100)
 
 ax.set_xticklabels(category_columns, rotation=45)
 ax.set_xlabel('Merchant Categories')
